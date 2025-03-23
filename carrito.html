@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Snus Haven</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Snus Haven</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="pago.html">Pago</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Tu Carrito</h2>
+        <div class="carrito-container">
+            <div class="producto">
+                <img src="images/snus1.jpg" alt="Snus Producto 1">
+                <h3>Snus Sabor 1</h3>
+                <p class="precio">Precio: $10.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="btn-eliminar">Eliminar</button>
+            </div>
+            <div class="producto">
+                <img src="images/snus2.jpg" alt="Snus Producto 2">
+                <h3>Snus Sabor 2</h3>
+                <p class="precio">Precio: $12.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="btn-eliminar">Eliminar</button>
+            </div>
+            <!-- Agrega más productos según sea necesario -->
+        </div>
+
+        <div class="total">
+            <h3>Total: $22.00</h3>
+            <button class="btn-pagar">Proceder al Pago</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Snus Haven. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

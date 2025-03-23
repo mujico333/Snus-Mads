@@ -1,39 +1,7 @@
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-header {
-    background: #2c3e50;
-    color: #ecf0f1;
-    padding: 20px 0;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #ecf0f1;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-main {
-    padding: 20px;
-}
-
-h2 {
-    color: #2c3e50;
+.carrito-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .producto {
@@ -43,8 +11,51 @@ h2 {
     padding: 15px;
     margin: 15px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.producto:hover {
-    transform: scale(1.
+.producto img {
+    max-width: 100px;
+    margin-right: 15px;
+}
+
+.cantidad {
+    width: 50px;
+    margin-right: 15px;
+}
+
+.btn-eliminar {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-eliminar:hover {
+    background: #c0392b;
+}
+
+.total {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-pagar {
+    background: #1abc9c;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-pagar:hover {
+    background: #16a085;
+}

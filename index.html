@@ -7,22 +7,30 @@
     <link rel="stylesheet" href="styles.css">
     <script>
         function verificarEdad() {
-            const edad = prompt("Por favor, ingresa tu edad:");
-            if (edad < 18) {
-                alert("Lo siento, debes tener al menos 18 años para acceder a este sitio.");
-                window.location.href = "https://www.google.com"; // Redirigir a otra página
-            }
+            const popup = document.getElementById("popup");
+            popup.style.display = "block";
+        }
+
+        function aceptarEdad() {
+            const popup = document.getElementById("popup");
+            popup.style.display = "none";
+        }
+
+        function rechazarEdad() {
+            alert("Lo siento, debes tener al menos 18 años para acceder a este sitio.");
+            window.location.href = "https://www.google.com"; // Redirigir a otra página
         }
     </script>
 </head>
 <body onload="verificarEdad()">
     <header>
-        <h1>SnusMads</h1>
+        <h1>Snus Haven</h1>
         <nav>
             <ul>
                 <li><a href="#productos">Productos</a></li>
-                <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="pago.html">Carrito</a></li>
             </ul>
         </nav>
     </header>
@@ -30,47 +38,37 @@
     <main>
         <section id="productos">
             <h2>Nuestros Productos</h2>
-            <div class="producto">
-                <img src="images/snus1.jpg" alt="Snus Producto 1">
-                <h3>77 Cola & Vanilla 20mg</h3>
-                <p>szsasaasas</p>
-                <p>Precio: $4</p>
-                <button>Comprar</button>
+            <div class="productos-container">
+                <div class="producto">
+                    <img src="images/snus1.jpg" alt="Snus Producto 1">
+                    <h3>Snus Sabor 1</h3>
+                    <p>Descripción del producto 1.</p>
+                    <p class="precio">Precio: $10.00</p>
+                    <button class="btn-comprar">Comprar</button>
+                </div>
+                <div class="producto">
+                    <img src="images/snus2.jpg" alt="Snus Producto 2">
+                    <h3>Snus Sabor 2</h3>
+                    <p>Descripción del producto 2.</p>
+                    <p class="precio">Precio: $12.00</p>
+                    <button class="btn-comprar">Comprar</button>
+                </div>
+                <!-- Agrega más productos según sea necesario -->
             </div>
-            <div class="producto">
-                <img src="images/snus2.jpg" alt="Snus Producto 2">
-                <h3>Snus Sabor 2</h3>
-                <p>Descripción del producto 2.</p>
-                <p>Precio: $12.00</p>
-                <button>Comprar</button>
-            </div>
-            <!-- Agrega más productos según sea necesario -->
-        </section>
-
-        <section id="sobre-nosotros">
-            <h2>Sobre Nosotros</h2>
-            <p>En SnusMads, ofrecemos una amplia variedad de snus de alta calidad. Nuestro objetivo es proporcionar a nuestros clientes los mejores productos del mercado.</p>
-        </section>
-
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <form>
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
-                
-                <button type="submit">Enviar</button>
-            </form>
         </section>
     </main>
 
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Verificación de Edad</h2>
+            <p>¿Tienes al menos 18 años?</p>
+            <button onclick="aceptarEdad()">Sí</button>
+            <button onclick="rechazarEdad()">No</button>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2025 SnusMads. Todos los derechos reservados.</p>
+        <p>&copy; 2023 Snus Mads. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>

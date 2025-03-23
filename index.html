@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snus Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Verificación de edad -->
+    <div id="age-verification" class="modal">
+        <div class="modal-content">
+            <h2>Debes ser mayor de 18 años para entrar</h2>
+            <button onclick="verifyAge(true)">Soy mayor de 18</button>
+            <button onclick="verifyAge(false)">No soy mayor</button>
+        </div>
+    </div>
+
+    <!-- Login -->
+    <div id="login" class="modal">
+        <div class="modal-content">
+            <h2>Iniciar sesión</h2>
+            <input type="text" id="name" placeholder="Nombre">
+            <input type="text" id="card" placeholder="Número de tarjeta">
+            <button onclick="saveLogin()">Entrar</button>
+        </div>
+    </div>
+
+    <!-- Tienda -->
+    <header>
+        <h1>Bienvenido a Snus Shop</h1>
+    </header>
+    <main>
+        <section id="marca1">
+            <h2>Marca 1</h2>
+            <div class="producto">
+                <h3>Snus X</h3>
+                <select>
+                    <option value="1">1 unidad</option>
+                    <option value="2">2 unidades</option>
+                    <option value="5">5 unidades</option>
+                    <option value="10">10 unidades</option>
+                </select>
+                <button>Comprar</button>
+            </div>
+        </section>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

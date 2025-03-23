@@ -3,49 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snus Shop</title>
+    <title>Snus Haven</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Verificación de edad -->
-    <div id="age-verification" class="modal">
-        <div class="modal-content">
-            <h2>Debes ser mayor de 18 años para entrar</h2>
-            <button onclick="verifyAge(true)">Soy mayor de 18</button>
-            <button onclick="verifyAge(false)">No soy mayor</button>
-        </div>
-    </div>
-
-    <!-- Login -->
-    <div id="login" class="modal">
-        <div class="modal-content">
-            <h2>Iniciar sesión</h2>
-            <input type="text" id="name" placeholder="Nombre">
-            <input type="text" id="card" placeholder="Número de tarjeta">
-            <button onclick="saveLogin()">Entrar</button>
-        </div>
-    </div>
-
-    <!-- Tienda -->
     <header>
-        <h1>Bienvenido a Snus Shop</h1>
+        <h1>Snus Haven</h1>
+        <nav>
+            <ul>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
+
     <main>
-        <section id="marca1">
-            <h2>Marca 1</h2>
+        <section id="productos">
+            <h2>Nuestros Productos</h2>
             <div class="producto">
-                <h3>Snus X</h3>
-                <select>
-                    <option value="1">1 unidad</option>
-                    <option value="2">2 unidades</option>
-                    <option value="5">5 unidades</option>
-                    <option value="10">10 unidades</option>
-                </select>
+                <img src="images/snus1.jpg" alt="Snus Producto 1">
+                <h3>Snus Sabor 1</h3>
+                <p>Descripción del producto 1.</p>
+                <p>Precio: $10.00</p>
                 <button>Comprar</button>
             </div>
+            <div class="producto">
+                <img src="images/snus2.jpg" alt="Snus Producto 2">
+                <h3>Snus Sabor 2</h3>
+                <p>Descripción del producto 2.</p>
+                <p>Precio: $12.00</p>
+                <button>Comprar</button>
+            </div>
+            <!-- Agrega más productos según sea necesario -->
+        </section>
+
+        <section id="sobre-nosotros">
+            <h2>Sobre Nosotros</h2>
+            <p>En Snus Haven, ofrecemos una amplia variedad de snus de alta calidad. Nuestro objetivo es proporcionar a nuestros clientes los mejores productos del mercado.</p>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
         </section>
     </main>
-    
-    <script src="script.js"></script>
+
+    <footer>
+        <p>&copy; 2023 Snus Haven. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>

@@ -1,14 +1,14 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
 }
 
 header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px 0;
     text-align: center;
 }
 
@@ -23,12 +23,17 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #ecf0f1;
     text-decoration: none;
+    font-weight: bold;
 }
 
 main {
     padding: 20px;
+}
+
+h2 {
+    color: #2c3e50;
 }
 
 .producto {
@@ -37,19 +42,9 @@ main {
     border-radius: 5px;
     padding: 15px;
     margin: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 }
 
-.producto img {
-    max-width: 100%;
-    height: auto;
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background: #333;
-    color: #fff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
+.producto:hover {
+    transform: scale(1.

@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snus Haven</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function verificarEdad() {
+            const edad = prompt("Por favor, ingresa tu edad:");
+            if (edad < 18) {
+                alert("Lo siento, debes tener al menos 18 años para acceder a este sitio.");
+                window.location.href = "https://www.google.com"; // Redirigir a otra página
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="verificarEdad()">
     <header>
         <h1>Snus Haven</h1>
         <nav>

@@ -3,57 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnusMads</title>
+    <title>SnusMads — Snus premium a domicilio</title>
+    <meta name="description" content="SnusMads: la mejor selección de snus premium. Sabores mentolados, cítricos, frutales y clásicos. Envío rápido y discreto.">
     <link rel="stylesheet" href="styles.css">
-    <script>
-        function verificarEdad() {
-            const popup = document.getElementById("popup");
-            popup.style.display = "block";
-        }
-
-        function aceptarEdad() {
-            const popup = document.getElementById("popup");
-            popup.style.display = "none";
-        }
-
-        function rechazarEdad() {
-            alert("Lo siento, debes tener al menos 18 años para acceder a este sitio.");
-            window.location.href = "https://www.google.com"; // Redirigir a otra página
-        }
-    </script>
 </head>
-<body onload="verificarEdad()">
+<body>
     <header>
-        <h1>Snus Haven</h1>
-        <nav>
-            <ul>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="pago.html">Carrito</a></li>
-            </ul>
-        </nav>
+        <div class="header-inner">
+            <a href="index.html" class="logo">🌿 SnusMads<span class="tagline">SNUS PREMIUM</span></a>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">☰</button>
+            <nav id="nav-principal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#productos">Productos</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="carrito.html" class="nav-cart">🛒 Carrito <span class="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
+    <div class="aviso-edad">🔞 Venta exclusiva para mayores de 18 años. Producto con nicotina, genera dependencia.</div>
+
+    <section class="hero">
+        <h1>Snus premium, directo a tu puerta</h1>
+        <p>Descubre nuestra selección de snus sueco de alta calidad: sabores intensos, formatos suaves y fuertes, y envío rápido y discreto.</p>
+        <a href="#productos" class="btn">Ver productos</a>
+    </section>
 
     <main>
         <section id="productos">
             <h2>Nuestros Productos</h2>
-            <div class="productos-container">
-                <div class="producto">
-                    <img src="images/snus1.jpg" alt="Snus Producto 1">
-                    <h3>Snus Sabor 1</h3>
-                    <p>Descripción del producto 1.</p>
-                    <p class="precio">Precio: $10.00</p>
-                    <button class="btn-comprar">Comprar</button>
-                </div>
-                <div class="producto">
-                    <img src="images/snus2.jpg" alt="Snus Producto 2">
-                    <h3>Snus Sabor 2</h3>
-                    <p>Descripción del producto 2.</p>
-                    <p class="precio">Precio: $12.00</p>
-                    <button class="btn-comprar">Comprar</button>
-                </div>
-                <!-- Agrega más productos según sea necesario -->
+            <p class="section-sub">Elige tu sabor favorito y añádelo al carrito</p>
+
+            <div class="filtros">
+                <button class="filtro-btn activo" data-filtro="todos">Todos</button>
+                <button class="filtro-btn" data-filtro="menta">Menta</button>
+                <button class="filtro-btn" data-filtro="citricos">Cítricos</button>
+                <button class="filtro-btn" data-filtro="frutal">Frutales</button>
+                <button class="filtro-btn" data-filtro="clasico">Clásicos</button>
+            </div>
+
+            <div class="productos-container" id="productos-lista">
+                <!-- Generado dinámicamente por script.js -->
+            </div>
+        </section>
+
+        <section class="ventajas">
+            <div class="ventaja">
+                <div class="icono">🚚</div>
+                <h3>Envío rápido</h3>
+                <p>Recibe tu pedido en 24-48h en embalaje discreto.</p>
+            </div>
+            <div class="ventaja">
+                <div class="icono">✅</div>
+                <h3>Calidad garantizada</h3>
+                <p>Productos originales, siempre frescos.</p>
+            </div>
+            <div class="ventaja">
+                <div class="icono">🔒</div>
+                <h3>Verificación de edad</h3>
+                <p>Venta responsable, solo para mayores de 18 años.</p>
+            </div>
+            <div class="ventaja">
+                <div class="icono">💬</div>
+                <h3>Atención al cliente</h3>
+                <p>¿Dudas? Contáctanos y te ayudamos encantados.</p>
             </div>
         </section>
     </main>
@@ -61,14 +77,24 @@
     <div id="popup" class="popup">
         <div class="popup-content">
             <h2>Verificación de Edad</h2>
-            <p>¿Tienes al menos 18 años?</p>
-            <button onclick="aceptarEdad()">Sí</button>
-            <button onclick="rechazarEdad()">No</button>
+            <p>Este sitio vende productos con nicotina. ¿Tienes al menos 18 años?</p>
+            <div class="popup-botones">
+                <button id="btn-edad-si" class="si">Sí, soy mayor de edad</button>
+                <button id="btn-edad-no" class="no">No</button>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2023 Snus Mads. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="index.html">Inicio</a>
+            <a href="sobre-nosotros.html">Sobre Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="carrito.html">Carrito</a>
+        </div>
+        <p>&copy; 2026 SnusMads. Todos los derechos reservados. Venta prohibida a menores de 18 años.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

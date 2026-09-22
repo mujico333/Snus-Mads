@@ -3,51 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pago - Snus Haven</title>
+    <title>Pago - SnusMads</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Snus Haven</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
+        <div class="header-inner">
+            <a href="index.html" class="logo">🌿 SnusMads<span class="tagline">SNUS PREMIUM</span></a>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">☰</button>
+            <nav id="nav-principal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#productos">Productos</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="carrito.html" class="nav-cart">🛒 Carrito <span class="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <h2>Información de Pago</h2>
-        <form>
-            <label for="nombre">Nombre Completo:</label>
-            <input type="text" id="nombre" name="nombre" required>
-            
-            <label for="direccion">Dirección de Envío:</label>
-            <input type="text" id="direccion" name="direccion" required>
-            
-            <label for="ciudad">Ciudad:</label>
-            <input type="text" id="ciudad" name="ciudad" required>
-            
-            <label for="codigo-postal">Código Postal:</label>
-            <input type="text" id="codigo-postal" name="codigo-postal" required>
-            
-            <label for="tarjeta">Número de Tarjeta:</label>
-            <input type="text" id="tarjeta" name="tarjeta" required>
-            
-            <label for="fecha-expiracion">Fecha de Expiración (MM/AA):</label>
-            <input type="text" id="fecha-expiracion" name="fecha-expiracion" required>
-            
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" required>
-            
-            <button type="submit" class="btn-enviar">Confirmar Pago</button>
+        <h2>Finalizar Pedido</h2>
+        <p class="section-sub">Completa tus datos de envío y confirma tu pedido</p>
+
+        <div class="resumen" id="pago-resumen-container" style="max-width:520px;margin:0 auto 30px;">
+            <h3 style="margin-top:0;color:var(--gold);">Resumen del pedido</h3>
+            <div id="pago-resumen-items">
+                <!-- Generado dinámicamente por script.js -->
+            </div>
+        </div>
+
+        <form id="form-pago">
+            <h3>Datos de envío</h3>
+            <div>
+                <label for="nombre">Nombre Completo</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div>
+                <label for="direccion">Dirección de Envío</label>
+                <input type="text" id="direccion" name="direccion" required>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label for="ciudad">Ciudad</label>
+                    <input type="text" id="ciudad" name="ciudad" required>
+                </div>
+                <div>
+                    <label for="codigo-postal">Código Postal</label>
+                    <input type="text" id="codigo-postal" name="codigo-postal" required>
+                </div>
+            </div>
+            <div>
+                <label for="telefono">Teléfono de contacto</label>
+                <input type="tel" id="telefono" name="telefono" required>
+            </div>
+
+            <h3>Método de pago</h3>
+            <div class="metodo-pago">
+                <label>
+                    <input type="radio" name="pago" value="transferencia" checked>
+                    Transferencia bancaria
+                </label>
+                <label>
+                    <input type="radio" name="pago" value="contrareembolso">
+                    Pago contra reembolso
+                </label>
+            </div>
+            <p style="font-size:0.8rem;color:var(--text-muted);margin:-6px 0 0;">
+                Por seguridad no solicitamos datos de tarjeta en esta web. Tras confirmar el pedido te
+                contactaremos para completar el pago por el método elegido.
+            </p>
+
+            <button type="submit" class="btn-enviar">Confirmar Pedido</button>
         </form>
+
+        <div id="confirmacion-pedido" class="mensaje-confirmacion">
+            <h3 style="color:var(--gold);margin-top:0;">¡Pedido recibido!</h3>
+            <p>Gracias por tu compra. Te contactaremos en breve para confirmar el pago y el envío.</p>
+            <a href="index.html" class="btn" style="margin-top:10px;">Volver a la tienda</a>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2023 Snus Haven. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="index.html">Inicio</a>
+            <a href="sobre-nosotros.html">Sobre Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="carrito.html">Carrito</a>
+        </div>
+        <p>&copy; 2026 SnusMads. Todos los derechos reservados. Venta prohibida a menores de 18 años.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

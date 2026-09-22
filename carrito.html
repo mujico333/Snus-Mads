@@ -3,50 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito - Snus Haven</title>
+    <title>Carrito - SnusMads</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Snus Haven</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="pago.html">Pago</a></li>
-            </ul>
-        </nav>
+        <div class="header-inner">
+            <a href="index.html" class="logo">🌿 SnusMads<span class="tagline">SNUS PREMIUM</span></a>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">☰</button>
+            <nav id="nav-principal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#productos">Productos</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="carrito.html" class="nav-cart">🛒 Carrito <span class="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
         <h2>Tu Carrito</h2>
-        <div class="carrito-container">
-            <div class="producto">
-                <img src="images/snus1.jpg" alt="Snus Producto 1">
-                <h3>Snus Sabor 1</h3>
-                <p class="precio">Precio: $10.00</p>
-                <input type="number" value="1" min="1" class="cantidad">
-                <button class="btn-eliminar">Eliminar</button>
-            </div>
-            <div class="producto">
-                <img src="images/snus2.jpg" alt="Snus Producto 2">
-                <h3>Snus Sabor 2</h3>
-                <p class="precio">Precio: $12.00</p>
-                <input type="number" value="1" min="1" class="cantidad">
-                <button class="btn-eliminar">Eliminar</button>
-            </div>
-            <!-- Agrega más productos según sea necesario -->
+        <p class="section-sub">Revisa tus productos antes de continuar al pago</p>
+
+        <div class="carrito-container" id="carrito-lista">
+            <!-- Generado dinámicamente por script.js -->
         </div>
 
-        <div class="total">
-            <h3>Total: $22.00</h3>
-            <button class="btn-pagar">Proceder al Pago</button>
+        <div class="resumen" id="resumen-carrito" style="display:none;">
+            <div class="resumen-linea">
+                <span>Subtotal</span>
+                <span id="resumen-subtotal">0.00 €</span>
+            </div>
+            <div class="resumen-linea">
+                <span>Envío</span>
+                <span id="resumen-envio">0.00 €</span>
+            </div>
+            <div class="resumen-linea total">
+                <span>Total</span>
+                <span id="resumen-total">0.00 €</span>
+            </div>
+            <a href="pago.html" class="btn">Proceder al Pago</a>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2023 Snus Haven. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="index.html">Inicio</a>
+            <a href="sobre-nosotros.html">Sobre Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="carrito.html">Carrito</a>
+        </div>
+        <p>&copy; 2026 SnusMads. Todos los derechos reservados. Venta prohibida a menores de 18 años.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

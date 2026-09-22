@@ -8,34 +8,57 @@
 </head>
 <body>
     <header>
-        <h1>SnusMads</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                <li><a href="pago.html">Carrito</a></li>
-            </ul>
-        </nav>
+        <div class="header-inner">
+            <a href="index.html" class="logo">🌿 SnusMads<span class="tagline">SNUS PREMIUM</span></a>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">☰</button>
+            <nav id="nav-principal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#productos">Productos</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="carrito.html" class="nav-cart">🛒 Carrito <span class="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
         <h2>Contacto</h2>
-        <form>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="mensaje">Mensaje:</label>
-            <textarea id="mensaje" name="mensaje" required></textarea>
-            
+        <p class="section-sub">¿Tienes alguna duda sobre nuestros productos o tu pedido? Escríbenos.</p>
+
+        <form id="form-contacto">
+            <div>
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+            </div>
             <button type="submit" class="btn-enviar">Enviar</button>
         </form>
+
+        <div id="confirmacion-contacto" class="mensaje-confirmacion">
+            <h3 style="color:var(--gold);margin-top:0;">¡Mensaje enviado!</h3>
+            <p>Gracias por escribirnos. Te responderemos lo antes posible.</p>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2023 Snus Mads. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="index.html">Inicio</a>
+            <a href="sobre-nosotros.html">Sobre Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="carrito.html">Carrito</a>
+        </div>
+        <p>&copy; 2026 SnusMads. Todos los derechos reservados. Venta prohibida a menores de 18 años.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,74 +1,199 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnusMads</title>
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        function verificarEdad() {
-            const popup = document.getElementById("popup");
-            popup.style.display = "block";
-        }
-
-        function aceptarEdad() {
-            const popup = document.getElementById("popup");
-            popup.style.display = "none";
-        }
-
-        function rechazarEdad() {
-            alert("Lo siento, debes tener al menos 18 años para acceder a este sitio.");
-            window.location.href = "https://www.google.com"; // Redirigir a otra página
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snus Mads — Snus premium sueco</title>
+<meta name="description" content="Snus Mads: selección de snus premium sueco. Sabores de menta, cítricos, frutales y clásicos. Envío discreto en 24-48h.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b05e2c' stroke-width='1.8'%3E%3Cpath d='M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z'/%3E%3Cpath d='M9 15c3-3 6-5 10-6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
 </head>
-<body onload="verificarEdad()">
-    <header>
-        <h1>Snus Haven</h1>
-        <nav>
+<body>
+
+<div class="barra-aviso">Producto con nicotina — venta exclusiva a <strong>mayores de 18 años</strong>. Genera dependencia.</div>
+
+<header>
+    <div class="cabecera-interior">
+        <a href="index.html" class="marca">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z"/><path d="M9 15c3-3 6-5 10-6"/></svg>
+            <span class="marca-completa">Snus Mads<small>Snus premium sueco</small></span>
+        </a>
+        <button id="boton-menu" class="boton-menu" aria-label="Abrir menú">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <nav id="nav-principal" class="nav-principal">
             <ul>
-                <li><a href="#productos">Productos</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
                 <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="pago.html">Carrito</a></li>
             </ul>
+            <a href="carrito.html" class="enlace-carrito">
+                <svg class="icono" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+                Carrito
+                <span class="contador-carrito" data-contador-carrito>0</span>
+            </a>
         </nav>
-    </header>
+    </div>
+</header>
 
-    <main>
-        <section id="productos">
-            <h2>Nuestros Productos</h2>
-            <div class="productos-container">
-                <div class="producto">
-                    <img src="images/snus1.jpg" alt="Snus Producto 1">
-                    <h3>Snus Sabor 1</h3>
-                    <p>Descripción del producto 1.</p>
-                    <p class="precio">Precio: $10.00</p>
-                    <button class="btn-comprar">Comprar</button>
-                </div>
-                <div class="producto">
-                    <img src="images/snus2.jpg" alt="Snus Producto 2">
-                    <h3>Snus Sabor 2</h3>
-                    <p>Descripción del producto 2.</p>
-                    <p class="precio">Precio: $12.00</p>
-                    <button class="btn-comprar">Comprar</button>
-                </div>
-                <!-- Agrega más productos según sea necesario -->
+<section class="heroe">
+    <div class="heroe-interior">
+        <span class="etiqueta sobre-pine">Importado directamente de Suecia</span>
+        <h1>Snus premium, elaborado para durar todo el día.</h1>
+        <p>Ocho sabores seleccionados, tres niveles de intensidad y un envío discreto en 24-48h. Snus Mads es tabaco sueco sin humo, hecho para quien no se conforma con lo genérico.</p>
+        <div class="heroe-acciones">
+            <a href="#catalogo" class="btn">Ver catálogo</a>
+            <a href="sobre-nosotros.html" class="btn btn-sobre-pine">Nuestra historia</a>
+        </div>
+        <dl class="heroe-cifras">
+            <div class="heroe-cifra">
+                <dt>8</dt>
+                <dd>Sabores</dd>
             </div>
-        </section>
-    </main>
+            <div class="heroe-cifra">
+                <dt>24–48h</dt>
+                <dd>Envío</dd>
+            </div>
+            <div class="heroe-cifra">
+                <dt>+2.000</dt>
+                <dd>Clientes</dd>
+            </div>
+        </dl>
+    </div>
+</section>
 
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <h2>Verificación de Edad</h2>
-            <p>¿Tienes al menos 18 años?</p>
-            <button onclick="aceptarEdad()">Sí</button>
-            <button onclick="rechazarEdad()">No</button>
+<main>
+    <section id="catalogo">
+        <div class="cabecera-seccion">
+            <div>
+                <span class="etiqueta">Catálogo</span>
+                <h2 class="titulo-seccion">Nuestros Sabores</h2>
+            </div>
+            <div class="filtros">
+                <button class="filtro-btn activo" data-filtro="todos">Todos</button>
+                <button class="filtro-btn" data-filtro="menta">Menta</button>
+                <button class="filtro-btn" data-filtro="citricos">Cítricos</button>
+                <button class="filtro-btn" data-filtro="frutal">Frutales</button>
+                <button class="filtro-btn" data-filtro="clasico">Clásicos</button>
+            </div>
+        </div>
+        <div class="rejilla-productos" id="lista-productos"></div>
+    </section>
+
+    <section>
+        <div class="cabecera-seccion">
+            <div>
+                <span class="etiqueta">Cómo funciona</span>
+                <h2 class="titulo-seccion">De la lata a tu puerta</h2>
+            </div>
+        </div>
+        <div class="pasos">
+            <div class="paso">
+                <span class="num">01</span>
+                <h3>Elige tu sabor</h3>
+                <p>Filtra por familia de sabor e intensidad hasta encontrar tu snus ideal.</p>
+            </div>
+            <div class="paso">
+                <span class="num">02</span>
+                <h3>Confirma tu pedido</h3>
+                <p>Indica tus datos de envío y elige transferencia o contra reembolso.</p>
+            </div>
+            <div class="paso">
+                <span class="num">03</span>
+                <h3>Recíbelo en 24-48h</h3>
+                <p>Empaquetado discreto, sin referencias visibles al contenido.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<section class="franja-pine">
+    <div class="envuelto">
+        <div class="garantia">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/></svg>
+            <div>
+                <h3>Envío discreto</h3>
+                <p>Embalaje neutro y entrega en 24-48h laborables.</p>
+            </div>
+        </div>
+        <div class="garantia">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3Z"/></svg>
+            <div>
+                <h3>Verificación de edad</h3>
+                <p>Venta responsable, exclusiva para mayores de 18 años.</p>
+            </div>
+        </div>
+        <div class="garantia">
+            <svg class="icono" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>
+            <div>
+                <h3>Calidad garantizada</h3>
+                <p>Lotes frescos, importados directamente de Suecia.</p>
+            </div>
+        </div>
+        <div class="garantia">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4V5Z"/></svg>
+            <div>
+                <h3>Atención cercana</h3>
+                <p>¿Dudas sobre un sabor o tu pedido? Escríbenos.</p>
+            </div>
         </div>
     </div>
+</section>
 
-    <footer>
-        <p>&copy; 2023 Snus Mads. Todos los derechos reservados.</p>
-    </footer>
+<footer>
+    <div class="envuelto">
+        <div class="pie-rejilla">
+            <div class="pie-marca">
+                <span class="marca">
+                    <svg class="icono" viewBox="0 0 24 24"><path d="M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z"/><path d="M9 15c3-3 6-5 10-6"/></svg>
+                    Snus Mads
+                </span>
+                <p>Snus premium sueco, seleccionado por su calidad e intensidad. Venta exclusiva para mayores de 18 años.</p>
+            </div>
+            <div class="pie-columna">
+                <h4>Tienda</h4>
+                <ul>
+                    <li><a href="index.html#catalogo">Catálogo</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                    <li><a href="pago.html">Finalizar pedido</a></li>
+                </ul>
+            </div>
+            <div class="pie-columna">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="pie-columna">
+                <h4>Aviso</h4>
+                <ul>
+                    <li>Producto con nicotina</li>
+                    <li>Genera dependencia</li>
+                    <li>Solo mayores de 18 años</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pie-inferior">
+            <span>&copy; 2026 Snus Mads. Todos los derechos reservados.</span>
+            <span>Venta prohibida a menores de 18 años.</span>
+        </div>
+    </div>
+</footer>
+
+<div id="popup-edad" class="popup">
+    <div class="popup-contenido">
+        <svg class="icono-grande" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>
+        <h2>Verificación de edad</h2>
+        <p>Este sitio vende productos con nicotina. Confirma que tienes al menos 18 años para continuar.</p>
+        <div class="popup-botones">
+            <button id="btn-edad-si" class="btn">Sí, soy mayor de edad</button>
+            <button id="btn-edad-no" class="btn btn-fantasma">No</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

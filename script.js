@@ -1,270 +1,324 @@
-/* ===== Catálogo de productos ===== */
+/* ==========================================================================
+   SNUS MADS — Lógica de sitio (catálogo, carrito, formularios, edad)
+   Sin dependencias externas. Estado del carrito persistido en localStorage.
+   ========================================================================== */
+
+const CLAVE_CARRITO = 'snusmads.carrito';
+const CLAVE_EDAD = 'snusmads.edadVerificada';
+const COSTE_ENVIO = 3.95;
+
+const ICONOS = {
+    mas: '<svg class="icono" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>',
+    menos: '<svg class="icono" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>',
+    papelera: '<svg class="icono" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>',
+    check: '<svg class="icono" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>'
+};
+
+/* Catálogo — cada producto lleva un color de etiqueta propio (sin imágenes externas) */
 const PRODUCTOS = [
-    { id: 'menta-fuerte', nombre: 'Menta Fuerte', categoria: 'menta', fuerza: 'Fuerte (16mg/g)', precio: 9.90, descripcion: 'Snus de menta intensa y refrescante, larga duración.', img: 'https://placehold.co/300x300/1c211d/d4af37?text=Menta+Fuerte' },
-    { id: 'menta-suave', nombre: 'Menta Suave', categoria: 'menta', fuerza: 'Suave (8mg/g)', precio: 8.90, descripcion: 'Ideal para empezar, frescor equilibrado y sabor limpio.', img: 'https://placehold.co/300x300/1c211d/d4af37?text=Menta+Suave' },
-    { id: 'citrico', nombre: 'Cítrico Intenso', categoria: 'citricos', fuerza: 'Media (11mg/g)', precio: 9.50, descripcion: 'Notas de lima y naranja con un toque ácido muy vivo.', img: 'https://placehold.co/300x300/1c211d/d4af37?text=C%C3%ADtrico' },
-    { id: 'bayas', nombre: 'Bayas del Bosque', categoria: 'frutal', fuerza: 'Media (11mg/g)', precio: 9.50, descripcion: 'Mezcla dulce de arándanos y frambuesas silvestres.', img: 'https://placehold.co/300x300/1c211d/d4af37?text=Bayas' },
-    { id: 'original', nombre: 'Original Tabaco', categoria: 'clasico', fuerza: 'Fuerte (18mg/g)', precio: 8.50, descripcion: 'El sabor clásico sueco, robusto y sin aromas añadidos.', img: 'https://placehold.co/300x300/1c211d/d4af37?text=Original' },
-    { id: 'regaliz', nombre: 'Regaliz Negro', categoria: 'clasico', fuerza: 'Media (12mg/g)', precio: 9.90, descripcion: 'Toque nórdico de regaliz sobre base de tabaco suave.', img: 'https://placehold.co/300x300/1c211d/d4af37?text=Regaliz' },
-    { id: 'extra-fuerte', nombre: 'White Extra Fuerte', categoria: 'clasico', fuerza: 'Extra Fuerte (22mg/g)', precio: 10.90, descripcion: 'Formato blanco de liberación lenta para paladares expertos.', img: 'https://placehold.co/300x300/1c211d/d4af37?text=Extra+Fuerte' },
-    { id: 'sandia', nombre: 'Sandía Fresca', categoria: 'frutal', fuerza: 'Suave (8mg/g)', precio: 8.90, descripcion: 'Dulzor veraniego de sandía, muy suave en encía.', img: 'https://placehold.co/300x300/1c211d/d4af37?text=Sand%C3%ADa' }
+    { id: 'menta-glacial', nombre: 'Menta Glacial', categoria: 'menta', iniciales: 'MG', color: '#2b3f31', fuerza: 3, fuerzaTexto: 'Fuerte · 16 mg/g', precio: 9.90, descripcion: 'Mentol intenso y frío, con una liberación limpia y duradera.' },
+    { id: 'menta-suave', nombre: 'Menta Suave', categoria: 'menta', iniciales: 'MS', color: '#3d5844', fuerza: 1, fuerzaTexto: 'Suave · 8 mg/g', precio: 8.90, descripcion: 'Frescor equilibrado, ideal para iniciarse en el snus.' },
+    { id: 'citrico-lima', nombre: 'Lima & Bergamota', categoria: 'citricos', iniciales: 'LB', color: '#b05e2c', fuerza: 2, fuerzaTexto: 'Media · 11 mg/g', precio: 9.50, descripcion: 'Notas ácidas de lima con un fondo floral de bergamota.' },
+    { id: 'citrico-naranja', nombre: 'Naranja Sanguina', categoria: 'citricos', iniciales: 'NS', color: '#c17a3f', fuerza: 2, fuerzaTexto: 'Media · 11 mg/g', precio: 9.50, descripcion: 'Dulzor cítrico intenso con un toque amargo al final.' },
+    { id: 'bayas-bosque', nombre: 'Bayas del Bosque', categoria: 'frutal', iniciales: 'BB', color: '#6b3a4a', fuerza: 2, fuerzaTexto: 'Media · 11 mg/g', precio: 9.50, descripcion: 'Arándanos y frambuesas silvestres sobre base suave.' },
+    { id: 'sandia', nombre: 'Sandía Fresca', categoria: 'frutal', iniciales: 'SF', color: '#a8402b', fuerza: 1, fuerzaTexto: 'Suave · 8 mg/g', precio: 8.90, descripcion: 'Dulzor veraniego y ligero, muy suave en encía.' },
+    { id: 'original', nombre: 'Original Sueco', categoria: 'clasico', iniciales: 'OS', color: '#1f2e24', fuerza: 4, fuerzaTexto: 'Extra fuerte · 18 mg/g', precio: 8.50, descripcion: 'El sabor clásico y robusto, sin aromas añadidos.' },
+    { id: 'regaliz', nombre: 'Regaliz Nórdico', categoria: 'clasico', iniciales: 'RN', color: '#2c2a2e', fuerza: 3, fuerzaTexto: 'Fuerte · 14 mg/g', precio: 9.90, descripcion: 'Regaliz negro sobre una base de tabaco profunda.' }
 ];
 
-const CART_KEY = 'snusmads_carrito';
-const EDAD_KEY = 'snusmads_edad_verificada';
+/* ==========================================================================
+   Carrito — lectura/escritura en localStorage
+   ========================================================================== */
 
-/* ===== Utilidades de carrito (localStorage) ===== */
-function getCarrito() {
+function leerCarrito() {
     try {
-        return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-    } catch (e) {
+        const datos = JSON.parse(localStorage.getItem(CLAVE_CARRITO));
+        return Array.isArray(datos) ? datos : [];
+    } catch {
         return [];
     }
 }
 
-function guardarCarrito(carrito) {
-    localStorage.setItem(CART_KEY, JSON.stringify(carrito));
+function escribirCarrito(carrito) {
+    localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
     actualizarContadorCarrito();
 }
 
 function agregarAlCarrito(id) {
     const producto = PRODUCTOS.find(p => p.id === id);
     if (!producto) return;
-    const carrito = getCarrito();
-    const existente = carrito.find(item => item.id === id);
-    if (existente) {
-        existente.cantidad += 1;
+    const carrito = leerCarrito();
+    const linea = carrito.find(l => l.id === id);
+    if (linea) {
+        linea.cantidad += 1;
     } else {
         carrito.push({ id, cantidad: 1 });
     }
-    guardarCarrito(carrito);
+    escribirCarrito(carrito);
     mostrarToast(`${producto.nombre} añadido al carrito`);
 }
 
 function cambiarCantidad(id, delta) {
-    const carrito = getCarrito();
-    const item = carrito.find(i => i.id === id);
-    if (!item) return;
-    item.cantidad += delta;
-    if (item.cantidad <= 0) {
-        eliminarDelCarrito(id);
-        return;
-    }
-    guardarCarrito(carrito);
+    const carrito = leerCarrito();
+    const linea = carrito.find(l => l.id === id);
+    if (!linea) return;
+    linea.cantidad += delta;
+    const restante = linea.cantidad > 0 ? carrito : carrito.filter(l => l.id !== id);
+    escribirCarrito(restante);
     renderizarCarrito();
 }
 
-function eliminarDelCarrito(id) {
-    let carrito = getCarrito();
-    carrito = carrito.filter(i => i.id !== id);
-    guardarCarrito(carrito);
+function quitarDelCarrito(id) {
+    escribirCarrito(leerCarrito().filter(l => l.id !== id));
     renderizarCarrito();
 }
 
-function totalCarrito() {
-    const carrito = getCarrito();
-    return carrito.reduce((total, item) => {
-        const producto = PRODUCTOS.find(p => p.id === item.id);
-        return producto ? total + producto.precio * item.cantidad : total;
+function totalArticulos() {
+    return leerCarrito().reduce((suma, l) => suma + l.cantidad, 0);
+}
+
+function subtotalCarrito() {
+    return leerCarrito().reduce((suma, l) => {
+        const producto = PRODUCTOS.find(p => p.id === l.id);
+        return producto ? suma + producto.precio * l.cantidad : suma;
     }, 0);
 }
 
-function cantidadTotalCarrito() {
-    return getCarrito().reduce((t, i) => t + i.cantidad, 0);
-}
-
 function actualizarContadorCarrito() {
-    document.querySelectorAll('.cart-count').forEach(el => {
-        el.textContent = cantidadTotalCarrito();
+    document.querySelectorAll('[data-contador-carrito]').forEach(el => {
+        el.textContent = totalArticulos();
     });
 }
 
+/* ==========================================================================
+   Notificación flotante
+   ========================================================================== */
+
+let temporizadorToast;
+
 function mostrarToast(texto) {
-    let toast = document.getElementById('toast');
+    let toast = document.querySelector('.toast');
     if (!toast) {
         toast = document.createElement('div');
-        toast.id = 'toast';
-        toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#d4af37;color:#111;padding:10px 20px;border-radius:20px;font-weight:bold;z-index:300;transition:opacity 0.3s;box-shadow:0 4px 12px rgba(0,0,0,0.3);';
+        toast.className = 'toast';
+        toast.innerHTML = `${ICONOS.check}<span data-texto-toast></span>`;
         document.body.appendChild(toast);
     }
-    toast.textContent = texto;
-    toast.style.opacity = '1';
-    clearTimeout(toast._timeout);
-    toast._timeout = setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+    toast.querySelector('[data-texto-toast]').textContent = texto;
+    toast.classList.add('visible');
+    clearTimeout(temporizadorToast);
+    temporizadorToast = setTimeout(() => toast.classList.remove('visible'), 2200);
 }
 
-/* ===== Render página de productos (index.html) ===== */
-function renderizarProductos(filtro = 'todos') {
-    const contenedor = document.getElementById('productos-lista');
-    if (!contenedor) return;
-    const lista = filtro === 'todos' ? PRODUCTOS : PRODUCTOS.filter(p => p.categoria === filtro);
-    contenedor.innerHTML = lista.map(p => `
-        <div class="producto">
-            <img src="${p.img}" alt="${p.nombre}">
-            <h3>${p.nombre}</h3>
-            <span class="badge-fuerza">${p.fuerza}</span>
-            <p class="descripcion">${p.descripcion}</p>
-            <p class="precio">${p.precio.toFixed(2)} €</p>
-            <button class="btn-comprar" data-id="${p.id}">Añadir al carrito</button>
+/* ==========================================================================
+   Render — catálogo (index.html)
+   ========================================================================== */
+
+function marcadoEtiquetaProducto(producto, tamano = '') {
+    return `
+        <div class="${tamano === 'pequena' ? 'item-etiqueta' : 'producto-etiqueta'}" style="background:${producto.color}">
+            ${tamano === 'pequena' ? '' : `<span class="num">Nº ${PRODUCTOS.indexOf(producto) + 1}</span>`}
+            <span class="iniciales">${producto.iniciales}</span>
         </div>
+    `;
+}
+
+function marcadoPuntosFuerza(nivel) {
+    return `<span class="puntos-fuerza">${[1, 2, 3, 4].map(n => `<span class="${n <= nivel ? 'lleno' : ''}"></span>`).join('')}</span>`;
+}
+
+function renderizarProductos(filtro = 'todos') {
+    const contenedor = document.getElementById('lista-productos');
+    if (!contenedor) return;
+
+    const productos = filtro === 'todos' ? PRODUCTOS : PRODUCTOS.filter(p => p.categoria === filtro);
+
+    contenedor.innerHTML = productos.map(producto => `
+        <article class="producto">
+            ${marcadoEtiquetaProducto(producto)}
+            <h3 class="producto-nombre">${producto.nombre}</h3>
+            <div class="producto-meta">
+                ${marcadoPuntosFuerza(producto.fuerza)}
+                <span class="texto-fuerza">${producto.fuerzaTexto}</span>
+            </div>
+            <p class="producto-descripcion">${producto.descripcion}</p>
+            <div class="producto-pie">
+                <span class="producto-precio">${producto.precio.toFixed(2)} €</span>
+                <button class="btn-anadir" data-id="${producto.id}" aria-label="Añadir ${producto.nombre} al carrito">
+                    ${ICONOS.mas}
+                </button>
+            </div>
+        </article>
     `).join('');
 
-    contenedor.querySelectorAll('.btn-comprar').forEach(btn => {
-        btn.addEventListener('click', () => agregarAlCarrito(btn.dataset.id));
+    contenedor.querySelectorAll('.btn-anadir').forEach(boton => {
+        boton.addEventListener('click', () => agregarAlCarrito(boton.dataset.id));
     });
 }
 
 function inicializarFiltros() {
-    const filtros = document.querySelectorAll('.filtro-btn');
-    if (!filtros.length) return;
-    filtros.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filtros.forEach(b => b.classList.remove('activo'));
-            btn.classList.add('activo');
-            renderizarProductos(btn.dataset.filtro);
+    const botones = document.querySelectorAll('.filtro-btn');
+    if (!botones.length) return;
+    botones.forEach(boton => {
+        boton.addEventListener('click', () => {
+            botones.forEach(b => b.classList.remove('activo'));
+            boton.classList.add('activo');
+            renderizarProductos(boton.dataset.filtro);
         });
     });
 }
 
-/* ===== Render carrito (carrito.html) ===== */
+/* ==========================================================================
+   Render — carrito (carrito.html)
+   ========================================================================== */
+
 function renderizarCarrito() {
-    const contenedor = document.getElementById('carrito-lista');
+    const contenedor = document.getElementById('lista-carrito');
     if (!contenedor) return;
-    const carrito = getCarrito();
-    const resumen = document.getElementById('resumen-carrito');
+
+    const carrito = leerCarrito();
+    const panel = document.getElementById('panel-resumen');
+    const vacio = document.getElementById('carrito-vacio');
 
     if (carrito.length === 0) {
-        contenedor.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío. <a href="index.html" style="color:var(--gold)">Ver productos</a></p>';
-        if (resumen) resumen.style.display = 'none';
+        contenedor.style.display = 'none';
+        if (panel) panel.style.display = 'none';
+        if (vacio) vacio.style.display = 'block';
         return;
     }
 
-    if (resumen) resumen.style.display = 'block';
+    contenedor.style.display = 'flex';
+    if (panel) panel.style.display = 'block';
+    if (vacio) vacio.style.display = 'none';
 
-    contenedor.innerHTML = carrito.map(item => {
-        const producto = PRODUCTOS.find(p => p.id === item.id);
+    contenedor.innerHTML = carrito.map(linea => {
+        const producto = PRODUCTOS.find(p => p.id === linea.id);
         if (!producto) return '';
-        const subtotal = producto.precio * item.cantidad;
+        const subtotal = producto.precio * linea.cantidad;
         return `
             <div class="item-carrito">
-                <img src="${producto.img}" alt="${producto.nombre}">
+                ${marcadoEtiquetaProducto(producto, 'pequena')}
                 <div class="item-info">
                     <h3>${producto.nombre}</h3>
-                    <span class="precio-unit">${producto.precio.toFixed(2)} € / unidad</span>
+                    <span class="precio-unidad">${producto.precio.toFixed(2)} € / unidad</span>
                 </div>
-                <div class="cantidad-control">
-                    <button data-accion="restar" data-id="${item.id}">−</button>
-                    <span>${item.cantidad}</span>
-                    <button data-accion="sumar" data-id="${item.id}">+</button>
+                <div class="control-cantidad">
+                    <button data-accion="restar" data-id="${producto.id}" aria-label="Reducir cantidad">${ICONOS.menos}</button>
+                    <span>${linea.cantidad}</span>
+                    <button data-accion="sumar" data-id="${producto.id}" aria-label="Aumentar cantidad">${ICONOS.mas}</button>
                 </div>
-                <div class="item-subtotal">${subtotal.toFixed(2)} €</div>
-                <button class="btn-eliminar" data-id="${item.id}">Eliminar</button>
+                <span class="item-subtotal">${subtotal.toFixed(2)} €</span>
+                <button class="btn-quitar" data-id="${producto.id}" aria-label="Eliminar ${producto.nombre}">${ICONOS.papelera}</button>
             </div>
         `;
     }).join('');
 
     contenedor.querySelectorAll('[data-accion="sumar"]').forEach(b => b.addEventListener('click', () => cambiarCantidad(b.dataset.id, 1)));
     contenedor.querySelectorAll('[data-accion="restar"]').forEach(b => b.addEventListener('click', () => cambiarCantidad(b.dataset.id, -1)));
-    contenedor.querySelectorAll('.btn-eliminar').forEach(b => b.addEventListener('click', () => eliminarDelCarrito(b.dataset.id)));
+    contenedor.querySelectorAll('.btn-quitar').forEach(b => b.addEventListener('click', () => quitarDelCarrito(b.dataset.id)));
 
-    const envio = carrito.length > 0 ? 3.95 : 0;
-    const total = totalCarrito();
-    const subtotalEl = document.getElementById('resumen-subtotal');
-    const envioEl = document.getElementById('resumen-envio');
-    const totalEl = document.getElementById('resumen-total');
-    if (subtotalEl) subtotalEl.textContent = `${total.toFixed(2)} €`;
-    if (envioEl) envioEl.textContent = `${envio.toFixed(2)} €`;
-    if (totalEl) totalEl.textContent = `${(total + envio).toFixed(2)} €`;
+    const subtotal = subtotalCarrito();
+    const elSubtotal = document.getElementById('resumen-subtotal');
+    const elEnvio = document.getElementById('resumen-envio');
+    const elTotal = document.getElementById('resumen-total');
+    if (elSubtotal) elSubtotal.textContent = `${subtotal.toFixed(2)} €`;
+    if (elEnvio) elEnvio.textContent = `${COSTE_ENVIO.toFixed(2)} €`;
+    if (elTotal) elTotal.textContent = `${(subtotal + COSTE_ENVIO).toFixed(2)} €`;
 }
 
-/* ===== Render resumen en checkout (pago.html) ===== */
+/* ==========================================================================
+   Render — resumen en checkout (pago.html)
+   ========================================================================== */
+
 function renderizarResumenPago() {
-    const contenedor = document.getElementById('pago-resumen-items');
+    const contenedor = document.getElementById('resumen-items-pago');
     if (!contenedor) return;
-    const carrito = getCarrito();
+
+    const carrito = leerCarrito();
+    const formulario = document.getElementById('formulario-pago');
 
     if (carrito.length === 0) {
-        contenedor.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío.</p>';
-        const form = document.getElementById('form-pago');
-        if (form) form.style.display = 'none';
+        contenedor.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío. <a href="index.html">Ver catálogo</a></p>';
+        if (formulario) formulario.style.display = 'none';
         return;
     }
 
-    contenedor.innerHTML = carrito.map(item => {
-        const producto = PRODUCTOS.find(p => p.id === item.id);
-        if (!producto) return '';
-        return `<div class="resumen-linea"><span>${producto.nombre} x${item.cantidad}</span><span>${(producto.precio * item.cantidad).toFixed(2)} €</span></div>`;
-    }).join('');
+    const subtotal = subtotalCarrito();
 
-    const envio = 3.95;
-    const total = totalCarrito();
-    contenedor.innerHTML += `
-        <div class="resumen-linea"><span>Envío</span><span>${envio.toFixed(2)} €</span></div>
-        <div class="resumen-linea total"><span>Total</span><span>${(total + envio).toFixed(2)} €</span></div>
+    contenedor.innerHTML = carrito.map(linea => {
+        const producto = PRODUCTOS.find(p => p.id === linea.id);
+        if (!producto) return '';
+        return `<div class="linea-resumen"><span>${producto.nombre} × ${linea.cantidad}</span><span>${(producto.precio * linea.cantidad).toFixed(2)} €</span></div>`;
+    }).join('') + `
+        <div class="linea-resumen"><span>Envío</span><span>${COSTE_ENVIO.toFixed(2)} €</span></div>
+        <div class="linea-resumen total"><span>Total</span><span>${(subtotal + COSTE_ENVIO).toFixed(2)} €</span></div>
     `;
 }
 
-/* ===== Formulario de pago/pedido ===== */
 function inicializarFormularioPago() {
-    const form = document.getElementById('form-pago');
-    if (!form) return;
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        localStorage.removeItem(CART_KEY);
+    const formulario = document.getElementById('formulario-pago');
+    if (!formulario) return;
+    formulario.addEventListener('submit', evento => {
+        evento.preventDefault();
+        localStorage.removeItem(CLAVE_CARRITO);
         actualizarContadorCarrito();
-        form.style.display = 'none';
-        const confirmacion = document.getElementById('confirmacion-pedido');
-        if (confirmacion) confirmacion.classList.add('visible');
-        const resumen = document.getElementById('pago-resumen-container');
-        if (resumen) resumen.style.display = 'none';
+        formulario.style.display = 'none';
+        document.getElementById('confirmacion-pago').classList.add('visible');
+        document.getElementById('panel-resumen-pago').style.display = 'none';
     });
 }
 
-/* ===== Formulario de contacto ===== */
+/* ==========================================================================
+   Formulario de contacto
+   ========================================================================== */
+
 function inicializarFormularioContacto() {
-    const form = document.getElementById('form-contacto');
-    if (!form) return;
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        form.style.display = 'none';
-        const confirmacion = document.getElementById('confirmacion-contacto');
-        if (confirmacion) confirmacion.classList.add('visible');
+    const formulario = document.getElementById('formulario-contacto');
+    if (!formulario) return;
+    formulario.addEventListener('submit', evento => {
+        evento.preventDefault();
+        formulario.style.display = 'none';
+        document.getElementById('confirmacion-contacto').classList.add('visible');
     });
 }
 
-/* ===== Verificación de edad ===== */
+/* ==========================================================================
+   Verificación de edad
+   ========================================================================== */
+
 function inicializarVerificacionEdad() {
-    const popup = document.getElementById('popup');
+    const popup = document.getElementById('popup-edad');
     if (!popup) return;
 
-    if (localStorage.getItem(EDAD_KEY) === 'si') {
-        popup.style.display = 'none';
-    } else {
-        popup.style.display = 'flex';
+    if (localStorage.getItem(CLAVE_EDAD) !== 'si') {
+        popup.classList.add('visible');
     }
 
-    const btnSi = document.getElementById('btn-edad-si');
-    const btnNo = document.getElementById('btn-edad-no');
-
-    if (btnSi) btnSi.addEventListener('click', () => {
-        localStorage.setItem(EDAD_KEY, 'si');
-        popup.style.display = 'none';
+    document.getElementById('btn-edad-si')?.addEventListener('click', () => {
+        localStorage.setItem(CLAVE_EDAD, 'si');
+        popup.classList.remove('visible');
     });
 
-    if (btnNo) btnNo.addEventListener('click', () => {
+    document.getElementById('btn-edad-no')?.addEventListener('click', () => {
         window.location.href = 'https://www.google.com';
     });
 }
 
-/* ===== Menú móvil ===== */
+/* ==========================================================================
+   Menú móvil
+   ========================================================================== */
+
 function inicializarMenuMovil() {
-    const toggle = document.getElementById('nav-toggle');
+    const boton = document.getElementById('boton-menu');
     const nav = document.getElementById('nav-principal');
-    if (!toggle || !nav) return;
-    toggle.addEventListener('click', () => nav.classList.toggle('abierto'));
+    if (!boton || !nav) return;
+    boton.addEventListener('click', () => nav.classList.toggle('abierto'));
 }
 
-/* ===== Inicialización general ===== */
+/* ==========================================================================
+   Arranque
+   ========================================================================== */
+
 document.addEventListener('DOMContentLoaded', () => {
     inicializarVerificacionEdad();
     inicializarMenuMovil();

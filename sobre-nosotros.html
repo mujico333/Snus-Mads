@@ -1,61 +1,151 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nosotros - SnusMads</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre Nosotros — Snus Mads</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b05e2c' stroke-width='1.8'%3E%3Cpath d='M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z'/%3E%3Cpath d='M9 15c3-3 6-5 10-6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-inner">
-            <a href="index.html" class="logo">🌿 SnusMads<span class="tagline">SNUS PREMIUM</span></a>
-            <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">☰</button>
-            <nav id="nav-principal">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="index.html#productos">Productos</a></li>
-                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="carrito.html" class="nav-cart">🛒 Carrito <span class="cart-count">0</span></a></li>
-                </ul>
-            </nav>
+
+<div class="barra-aviso">Producto con nicotina — venta exclusiva a <strong>mayores de 18 años</strong>. Genera dependencia.</div>
+
+<header>
+    <div class="cabecera-interior">
+        <a href="index.html" class="marca">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z"/><path d="M9 15c3-3 6-5 10-6"/></svg>
+            <span class="marca-completa">Snus Mads<small>Snus premium sueco</small></span>
+        </a>
+        <button id="boton-menu" class="boton-menu" aria-label="Abrir menú">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <nav id="nav-principal" class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <a href="carrito.html" class="enlace-carrito">
+                <svg class="icono" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+                Carrito
+                <span class="contador-carrito" data-contador-carrito>0</span>
+            </a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero-simple">
+    <span class="etiqueta sobre-pine">Desde 2016</span>
+    <h1>Snus del norte, con criterio propio.</h1>
+    <p>Nacimos de un viaje a Estocolmo y de la certeza de que en el sur no había nada parecido. Hoy seleccionamos cada lote a mano.</p>
+</section>
+
+<main>
+    <section>
+        <div class="disposicion-historia">
+            <div class="historia-texto">
+                <span class="etiqueta">Nuestra historia</span>
+                <h2 class="titulo-seccion">Calidad antes que catálogo</h2>
+                <p>Snus Mads empezó como un pedido personal entre amigos: traer de Suecia el snus que no encontrábamos en ningún sitio. Con el tiempo se convirtió en una tienda con criterio propio, donde cada sabor pasa por una cata antes de entrar al catálogo.</p>
+                <p>No buscamos tener la lista más larga, sino la más honesta: pocos sabores, bien elegidos, con la intensidad indicada con claridad para que sepas exactamente qué estás comprando.</p>
+                <p>Trabajamos directamente con distribuidores suecos para garantizar frescura en cada lata y trazabilidad en cada pedido.</p>
+            </div>
+            <dl class="bloque-cifras">
+                <div class="cifra">
+                    <dt>8</dt>
+                    <dd>Sabores en catálogo</dd>
+                </div>
+                <div class="cifra">
+                    <dt>+2.000</dt>
+                    <dd>Clientes recurrentes</dd>
+                </div>
+                <div class="cifra">
+                    <dt>24-48h</dt>
+                    <dd>Tiempo de envío</dd>
+                </div>
+                <div class="cifra">
+                    <dt>100%</dt>
+                    <dd>Importación directa</dd>
+                </div>
+            </dl>
         </div>
-    </header>
+    </section>
 
-    <main>
-        <div class="sobre-container">
-            <h2>Sobre Nosotros</h2>
-            <p>En <strong>SnusMads</strong> llevamos años seleccionando el mejor snus sueco para ofrecerte una experiencia premium en cada lata. Trabajamos directamente con fabricantes reconocidos para garantizar frescura, calidad y variedad en cada pedido.</p>
-            <p>Creemos en la venta responsable: todos nuestros productos son exclusivamente para mayores de 18 años, y nos tomamos muy en serio la verificación de edad en cada compra.</p>
-
-            <div class="valores">
-                <div class="valor">
-                    <h3>🌱 Calidad</h3>
-                    <p>Solo trabajamos con proveedores certificados y productos siempre frescos.</p>
-                </div>
-                <div class="valor">
-                    <h3>🤝 Confianza</h3>
-                    <p>Envíos discretos, pagos claros y atención al cliente cercana.</p>
-                </div>
-                <div class="valor">
-                    <h3>⚖️ Responsabilidad</h3>
-                    <p>Venta exclusiva a mayores de edad y cumplimiento de la normativa local.</p>
-                </div>
+    <section>
+        <div class="cabecera-seccion">
+            <div>
+                <span class="etiqueta">Principios</span>
+                <h2 class="titulo-seccion">Lo que no negociamos</h2>
             </div>
         </div>
-    </main>
-
-    <footer>
-        <div class="footer-links">
-            <a href="index.html">Inicio</a>
-            <a href="sobre-nosotros.html">Sobre Nosotros</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="carrito.html">Carrito</a>
+        <div class="grid-valores">
+            <div class="valor">
+                <svg class="icono" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>
+                <h3>Calidad verificada</h3>
+                <p>Solo trabajamos con distribuidores certificados y lotes con fecha de producción reciente.</p>
+            </div>
+            <div class="valor">
+                <svg class="icono" viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/></svg>
+                <h3>Envío discreto</h3>
+                <p>Empaquetado neutro, sin referencias visibles al contenido del pedido.</p>
+            </div>
+            <div class="valor">
+                <svg class="icono" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3Z"/></svg>
+                <h3>Venta responsable</h3>
+                <p>Verificación de edad en cada visita y venta exclusiva a mayores de 18 años.</p>
+            </div>
+            <div class="valor">
+                <svg class="icono" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4V5Z"/></svg>
+                <h3>Trato cercano</h3>
+                <p>Respondemos dudas sobre sabores e intensidad antes y después de la compra.</p>
+            </div>
         </div>
-        <p>&copy; 2026 SnusMads. Todos los derechos reservados. Venta prohibida a menores de 18 años.</p>
-    </footer>
+    </section>
+</main>
 
-    <script src="script.js"></script>
+<footer>
+    <div class="envuelto">
+        <div class="pie-rejilla">
+            <div class="pie-marca">
+                <span class="marca">
+                    <svg class="icono" viewBox="0 0 24 24"><path d="M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z"/><path d="M9 15c3-3 6-5 10-6"/></svg>
+                    Snus Mads
+                </span>
+                <p>Snus premium sueco, seleccionado por su calidad e intensidad. Venta exclusiva para mayores de 18 años.</p>
+            </div>
+            <div class="pie-columna">
+                <h4>Tienda</h4>
+                <ul>
+                    <li><a href="index.html#catalogo">Catálogo</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                    <li><a href="pago.html">Finalizar pedido</a></li>
+                </ul>
+            </div>
+            <div class="pie-columna">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="pie-columna">
+                <h4>Aviso</h4>
+                <ul>
+                    <li>Producto con nicotina</li>
+                    <li>Genera dependencia</li>
+                    <li>Solo mayores de 18 años</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pie-inferior">
+            <span>&copy; 2026 Snus Mads. Todos los derechos reservados.</span>
+            <span>Venta prohibida a menores de 18 años.</span>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

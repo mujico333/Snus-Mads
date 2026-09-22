@@ -1,100 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pago - SnusMads</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizar pedido — Snus Mads</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b05e2c' stroke-width='1.8'%3E%3Cpath d='M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z'/%3E%3Cpath d='M9 15c3-3 6-5 10-6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-inner">
-            <a href="index.html" class="logo">🌿 SnusMads<span class="tagline">SNUS PREMIUM</span></a>
-            <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">☰</button>
-            <nav id="nav-principal">
+
+<div class="barra-aviso">Producto con nicotina — venta exclusiva a <strong>mayores de 18 años</strong>. Genera dependencia.</div>
+
+<header>
+    <div class="cabecera-interior">
+        <a href="index.html" class="marca">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z"/><path d="M9 15c3-3 6-5 10-6"/></svg>
+            <span class="marca-completa">Snus Mads<small>Snus premium sueco</small></span>
+        </a>
+        <button id="boton-menu" class="boton-menu" aria-label="Abrir menú">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <nav id="nav-principal" class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <a href="carrito.html" class="enlace-carrito">
+                <svg class="icono" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+                Carrito
+                <span class="contador-carrito" data-contador-carrito>0</span>
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="cabecera-seccion">
+        <div>
+            <span class="etiqueta">Paso 2 de 2</span>
+            <h1 class="titulo-seccion">Finalizar Pedido</h1>
+        </div>
+    </div>
+
+    <div class="disposicion-formulario">
+        <div id="columna-formulario-pago">
+            <form id="formulario-pago">
+                <fieldset>
+                    <legend>Datos de envío</legend>
+                    <div class="campo">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="campo">
+                        <label for="direccion">Dirección de envío</label>
+                        <input type="text" id="direccion" name="direccion" required>
+                    </div>
+                    <div class="fila-formulario">
+                        <div class="campo">
+                            <label for="ciudad">Ciudad</label>
+                            <input type="text" id="ciudad" name="ciudad" required>
+                        </div>
+                        <div class="campo">
+                            <label for="codigo-postal">Código postal</label>
+                            <input type="text" id="codigo-postal" name="codigo-postal" required>
+                        </div>
+                    </div>
+                    <div class="campo">
+                        <label for="telefono">Teléfono de contacto</label>
+                        <input type="tel" id="telefono" name="telefono" required>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Método de pago</legend>
+                    <div class="opciones-pago">
+                        <label class="opcion-pago">
+                            <input type="radio" name="pago" value="transferencia" checked>
+                            Transferencia bancaria
+                        </label>
+                        <label class="opcion-pago">
+                            <input type="radio" name="pago" value="contrareembolso">
+                            Pago contra reembolso
+                        </label>
+                    </div>
+                    <p class="aviso-formulario">Por seguridad no solicitamos datos de tarjeta en esta web. Tras confirmar el pedido te contactaremos para completar el pago por el método elegido.</p>
+                </fieldset>
+
+                <button type="submit" class="btn btn-ancho">Confirmar pedido</button>
+            </form>
+
+            <div id="confirmacion-pago" class="mensaje-confirmacion">
+                <svg class="icono" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>
+                <h3>Pedido recibido</h3>
+                <p>Gracias por tu compra. Te contactaremos en breve para confirmar el pago y el envío.</p>
+                <a href="index.html" class="btn">Volver a la tienda</a>
+            </div>
+        </div>
+
+        <aside class="panel-resumen" id="panel-resumen-pago">
+            <h3>Resumen del pedido</h3>
+            <div id="resumen-items-pago"></div>
+        </aside>
+    </div>
+</main>
+
+<footer>
+    <div class="envuelto">
+        <div class="pie-rejilla">
+            <div class="pie-marca">
+                <span class="marca">
+                    <svg class="icono" viewBox="0 0 24 24"><path d="M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z"/><path d="M9 15c3-3 6-5 10-6"/></svg>
+                    Snus Mads
+                </span>
+                <p>Snus premium sueco, seleccionado por su calidad e intensidad. Venta exclusiva para mayores de 18 años.</p>
+            </div>
+            <div class="pie-columna">
+                <h4>Tienda</h4>
                 <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="index.html#productos">Productos</a></li>
-                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="carrito.html" class="nav-cart">🛒 Carrito <span class="cart-count">0</span></a></li>
+                    <li><a href="index.html#catalogo">Catálogo</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                    <li><a href="pago.html">Finalizar pedido</a></li>
                 </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <h2>Finalizar Pedido</h2>
-        <p class="section-sub">Completa tus datos de envío y confirma tu pedido</p>
-
-        <div class="resumen" id="pago-resumen-container" style="max-width:520px;margin:0 auto 30px;">
-            <h3 style="margin-top:0;color:var(--gold);">Resumen del pedido</h3>
-            <div id="pago-resumen-items">
-                <!-- Generado dinámicamente por script.js -->
+            </div>
+            <div class="pie-columna">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="pie-columna">
+                <h4>Aviso</h4>
+                <ul>
+                    <li>Producto con nicotina</li>
+                    <li>Genera dependencia</li>
+                    <li>Solo mayores de 18 años</li>
+                </ul>
             </div>
         </div>
-
-        <form id="form-pago">
-            <h3>Datos de envío</h3>
-            <div>
-                <label for="nombre">Nombre Completo</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-            <div>
-                <label for="direccion">Dirección de Envío</label>
-                <input type="text" id="direccion" name="direccion" required>
-            </div>
-            <div class="form-row">
-                <div>
-                    <label for="ciudad">Ciudad</label>
-                    <input type="text" id="ciudad" name="ciudad" required>
-                </div>
-                <div>
-                    <label for="codigo-postal">Código Postal</label>
-                    <input type="text" id="codigo-postal" name="codigo-postal" required>
-                </div>
-            </div>
-            <div>
-                <label for="telefono">Teléfono de contacto</label>
-                <input type="tel" id="telefono" name="telefono" required>
-            </div>
-
-            <h3>Método de pago</h3>
-            <div class="metodo-pago">
-                <label>
-                    <input type="radio" name="pago" value="transferencia" checked>
-                    Transferencia bancaria
-                </label>
-                <label>
-                    <input type="radio" name="pago" value="contrareembolso">
-                    Pago contra reembolso
-                </label>
-            </div>
-            <p style="font-size:0.8rem;color:var(--text-muted);margin:-6px 0 0;">
-                Por seguridad no solicitamos datos de tarjeta en esta web. Tras confirmar el pedido te
-                contactaremos para completar el pago por el método elegido.
-            </p>
-
-            <button type="submit" class="btn-enviar">Confirmar Pedido</button>
-        </form>
-
-        <div id="confirmacion-pedido" class="mensaje-confirmacion">
-            <h3 style="color:var(--gold);margin-top:0;">¡Pedido recibido!</h3>
-            <p>Gracias por tu compra. Te contactaremos en breve para confirmar el pago y el envío.</p>
-            <a href="index.html" class="btn" style="margin-top:10px;">Volver a la tienda</a>
+        <div class="pie-inferior">
+            <span>&copy; 2026 Snus Mads. Todos los derechos reservados.</span>
+            <span>Venta prohibida a menores de 18 años.</span>
         </div>
-    </main>
+    </div>
+</footer>
 
-    <footer>
-        <div class="footer-links">
-            <a href="index.html">Inicio</a>
-            <a href="sobre-nosotros.html">Sobre Nosotros</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="carrito.html">Carrito</a>
-        </div>
-        <p>&copy; 2026 SnusMads. Todos los derechos reservados. Venta prohibida a menores de 18 años.</p>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

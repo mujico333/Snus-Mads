@@ -1,63 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito - SnusMads</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrito — Snus Mads</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b05e2c' stroke-width='1.8'%3E%3Cpath d='M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z'/%3E%3Cpath d='M9 15c3-3 6-5 10-6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-inner">
-            <a href="index.html" class="logo">🌿 SnusMads<span class="tagline">SNUS PREMIUM</span></a>
-            <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">☰</button>
-            <nav id="nav-principal">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="index.html#productos">Productos</a></li>
-                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="carrito.html" class="nav-cart">🛒 Carrito <span class="cart-count">0</span></a></li>
-                </ul>
-            </nav>
+
+<div class="barra-aviso">Producto con nicotina — venta exclusiva a <strong>mayores de 18 años</strong>. Genera dependencia.</div>
+
+<header>
+    <div class="cabecera-interior">
+        <a href="index.html" class="marca">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z"/><path d="M9 15c3-3 6-5 10-6"/></svg>
+            <span class="marca-completa">Snus Mads<small>Snus premium sueco</small></span>
+        </a>
+        <button id="boton-menu" class="boton-menu" aria-label="Abrir menú">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <nav id="nav-principal" class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <a href="carrito.html" class="enlace-carrito">
+                <svg class="icono" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+                Carrito
+                <span class="contador-carrito" data-contador-carrito>0</span>
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="cabecera-seccion">
+        <div>
+            <span class="etiqueta">Paso 1 de 2</span>
+            <h1 class="titulo-seccion">Tu Carrito</h1>
         </div>
-    </header>
+    </div>
 
-    <main>
-        <h2>Tu Carrito</h2>
-        <p class="section-sub">Revisa tus productos antes de continuar al pago</p>
-
-        <div class="carrito-container" id="carrito-lista">
-            <!-- Generado dinámicamente por script.js -->
+    <div class="disposicion-carrito">
+        <div>
+            <div class="lista-carrito" id="lista-carrito"></div>
+            <div class="carrito-vacio" id="carrito-vacio" style="display:none;">
+                <p>Tu carrito está vacío por ahora.</p>
+                <a href="index.html#catalogo" class="btn">Ver catálogo</a>
+            </div>
         </div>
 
-        <div class="resumen" id="resumen-carrito" style="display:none;">
-            <div class="resumen-linea">
+        <aside class="panel-resumen" id="panel-resumen">
+            <h3>Resumen del pedido</h3>
+            <div class="linea-resumen">
                 <span>Subtotal</span>
                 <span id="resumen-subtotal">0.00 €</span>
             </div>
-            <div class="resumen-linea">
+            <div class="linea-resumen">
                 <span>Envío</span>
                 <span id="resumen-envio">0.00 €</span>
             </div>
-            <div class="resumen-linea total">
+            <div class="linea-resumen total">
                 <span>Total</span>
                 <span id="resumen-total">0.00 €</span>
             </div>
-            <a href="pago.html" class="btn">Proceder al Pago</a>
-        </div>
-    </main>
+            <a href="pago.html" class="btn btn-ancho">Proceder al pago</a>
+            <p class="nota-resumen">Los gastos de envío se calculan sobre el total del pedido.</p>
+        </aside>
+    </div>
+</main>
 
-    <footer>
-        <div class="footer-links">
-            <a href="index.html">Inicio</a>
-            <a href="sobre-nosotros.html">Sobre Nosotros</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="carrito.html">Carrito</a>
+<footer>
+    <div class="envuelto">
+        <div class="pie-rejilla">
+            <div class="pie-marca">
+                <span class="marca">
+                    <svg class="icono" viewBox="0 0 24 24"><path d="M5 21c8-1 14-7 15-16-9 1-15 7-16 16Z"/><path d="M9 15c3-3 6-5 10-6"/></svg>
+                    Snus Mads
+                </span>
+                <p>Snus premium sueco, seleccionado por su calidad e intensidad. Venta exclusiva para mayores de 18 años.</p>
+            </div>
+            <div class="pie-columna">
+                <h4>Tienda</h4>
+                <ul>
+                    <li><a href="index.html#catalogo">Catálogo</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                    <li><a href="pago.html">Finalizar pedido</a></li>
+                </ul>
+            </div>
+            <div class="pie-columna">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="pie-columna">
+                <h4>Aviso</h4>
+                <ul>
+                    <li>Producto con nicotina</li>
+                    <li>Genera dependencia</li>
+                    <li>Solo mayores de 18 años</li>
+                </ul>
+            </div>
         </div>
-        <p>&copy; 2026 SnusMads. Todos los derechos reservados. Venta prohibida a menores de 18 años.</p>
-    </footer>
+        <div class="pie-inferior">
+            <span>&copy; 2026 Snus Mads. Todos los derechos reservados.</span>
+            <span>Venta prohibida a menores de 18 años.</span>
+        </div>
+    </div>
+</footer>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
